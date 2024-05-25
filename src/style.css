@@ -15,7 +15,7 @@ body {
 
 main {
   background-color: #f5f5f5;
-  height: 400px;
+  height: min-content;
   max-width: 800px;
   border-radius: 5px;
   padding: 20px;
@@ -24,7 +24,10 @@ main {
   justify-content: space-around;
   align-items: center;
 }
-
+.timer_counter {
+  display: flex;
+  gap: 2rem;
+}
 .title {
   font-size: 40px;
   margin: 0;
