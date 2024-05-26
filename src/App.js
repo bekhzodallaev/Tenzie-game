@@ -10,7 +10,14 @@ export default function App() {
   const [diceCount, setDiceCount] = React.useState(0);
   const [startTime, setStartTime] = React.useState(null);
   const [elapsedTime, setElapsedTime] = React.useState(0);
-  const [totalTime, setTotalTime] = React.useState(null);
+  const [bestCount, setBestCount] = React.useState(() => {
+    const savedCount = localStorage.getItem("bestCount");
+    return savedCount ? Number(savedCount) : null;
+  });
+  const [bestTime, setBestTime] = React.useState(() => {
+    const savedTime = localStorage.getItem("bestTime");
+    return savedTime ? Number(savedTime) : null;
+  });
   const timerRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -19,15 +26,22 @@ export default function App() {
     const allSameValue = dice.every((die) => die.value === firstValue);
     if (allHeld && allSameValue) {
       setTenzies(true);
-      clearInterval(timerRef.current); // Clear timer when game is won
+      clearInterval(timerRef.current);
       timerRef.current = null;
-      const endTime = new Date();
-      const timeDiff = (endTime - startTime) / 1000; // in seconds
-      const minutes = Math.floor(timeDiff / 60);
-      const seconds = Math.floor(timeDiff % 60);
-      setTotalTime(`${minutes}m ${seconds}s`);
+
+      // Update the best time if the new elapsed time is lower
+      if (!bestTime || elapsedTime < bestTime) {
+        setBestTime(elapsedTime);
+        localStorage.setItem("bestTime", elapsedTime);
+      }
+
+      // Update the best count if the new dice count is lower
+      if (!bestCount || diceCount < bestCount) {
+        setBestCount(diceCount);
+        localStorage.setItem("bestCount", diceCount);
+      }
     }
-  }, [dice, startTime]);
+  }, [dice, elapsedTime, bestTime, bestCount, diceCount]);
 
   function generateNewDie() {
     return {
@@ -94,12 +108,19 @@ export default function App() {
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
       </p>
-      <p>Number of Rolls: {diceCount}</p> {/* Display the roll count */}
+      <p>
+        Rolls: {diceCount} (<span className="time_red">Best Count:</span>{" "}
+        {bestCount !== null ? bestCount : "N/A"})
+      </p>
       <div className="timer_counter">
         <p>
-          Elapsed Time: {Math.floor(elapsedTime / 60)}m {elapsedTime % 60}s
-        </p>{" "}
-        {totalTime && <p>Total Time: {totalTime}</p>}{" "}
+          Time: {Math.floor(elapsedTime / 60)}m {elapsedTime % 60}s (
+          <span className="time_red">Best Time: </span>{" "}
+          {bestTime !== null
+            ? `${Math.floor(bestTime / 60)}m ${bestTime % 60}s`
+            : "N/A"}
+          )
+        </p>
       </div>
       <div className="dice-container">{diceElements}</div>
       <button className="roll-dice" onClick={rollDice}>
