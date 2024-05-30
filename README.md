@@ -27,7 +27,6 @@ Tenzie is a fun and fast-paced dice game where the objective is to roll ten dice
 - **Timer**: Keep track of how long it takes to achieve the goal.
 - **Best Count and Time**: Save your best roll count and best time to local storage to keep track of your personal records.
 - **Reset Button**: Quickly reset the game to start a new round.
-- **Responsive Design**: Play the game on any device, from desktops to mobile phones.
 
 ## Technologies Used
 
