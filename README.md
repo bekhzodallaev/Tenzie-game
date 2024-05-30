@@ -1,3 +1,49 @@
+# Tenzie Game
+
+Tenzie is a fun and fast-paced dice game where the objective is to roll ten dice and get all of them to show the same number as quickly as possible. It's a game of chance, strategy, and quick thinking.
+
+## How to Play
+
+1. **Setup**:
+   - You have ten dice to start with.
+   - At the beginning of the game, all dice are rolled to generate a random initial state.
+
+2. **Objective**:
+   - The goal is to get all ten dice to display the same number.
+
+3. **Gameplay**:
+   - Roll all ten dice.
+   - Choose a number you want all dice to show.
+   - Keep the dice that show the chosen number and roll the rest.
+   - Continue rolling the remaining dice until all ten dice show the chosen number.
+
+4. **Winning the Game**:
+   - The game is won when all ten dice show the same number.
+   - The challenge is to achieve this as quickly as possible.
+
+## Features
+
+- **Interactive UI**: The game interface allows players to click on dice to hold them and roll the rest.
+- **Timer**: Keep track of how long it takes to achieve the goal.
+- **Best Count and Time**: Save your best roll count and best time to local storage to keep track of your personal records.
+- **Reset Button**: Quickly reset the game to start a new round.
+- **Responsive Design**: Play the game on any device, from desktops to mobile phones.
+
+## Technologies Used
+
+- **Frontend**: HTML, CSS, JavaScript (React for a more dynamic interface).
+- **Styling**: CSS for custom styles, potentially with a preprocessor like Sass for better modularity.
+- **State Management**: React hooks or state management libraries to handle the game state.
+- **Local Storage**: Used to save the best count and best time.
+
+## How to Run the Game
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/tenzie-game.git
+   cd tenzie-game
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
